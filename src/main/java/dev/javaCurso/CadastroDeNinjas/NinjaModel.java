@@ -1,9 +1,12 @@
 package dev.javaCurso.CadastroDeNinjas;
 
+import dev.javaCurso.CadastroDeNinjas.Missoes.MissaoModel;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table(name = "tb_cadastrp")
+@Table(name = "tb_cadastro")
 public class NinjaModel {
 
     @Id
@@ -13,6 +16,11 @@ public class NinjaModel {
     private String nome;
     private String email;
     private int idade;
+
+    //Many (muitos) ninjas só podem ter uma missão (One) Many to One
+    @ManyToOne
+    @JoinColumn(name = "missoes_id")
+    private MissaoModel missoes;
 
     public NinjaModel() {
     }
