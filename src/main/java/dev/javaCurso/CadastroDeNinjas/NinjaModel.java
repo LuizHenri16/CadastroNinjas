@@ -2,17 +2,24 @@ package dev.javaCurso.CadastroDeNinjas;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table(name = "tb_cadastrp")
+@Table(name = "tb_cadastro")
 public class NinjaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String nome;
-    String email;
-    int idade;
+    private String nome;
+    private String email;
+    private int idade;
+
+    //Many (muitos) ninjas só podem ter uma missão (One) Many to One
+    @ManyToOne
+    @JoinColumn(name = "missoes_id")
+    private MissaoModel missoes;
 
     public NinjaModel() {
     }
